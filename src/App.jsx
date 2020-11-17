@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint react-hooks/exhaustive-deps: off */
+import React, { useEffect, useState } from "react";
 import ColorfulMessage from "./components/ColorfulMessage";
 
 const App = () => {
@@ -13,6 +14,15 @@ const App = () => {
   const onClickSwitchShowFlag = () => {
     setFaceShowFlag(!faceShowFlag);
   };
+
+  useEffect(() => {
+    if (num % 3 === 0) {
+      faceShowFlag || setFaceShowFlag(true); //フラグがfalseの場合に関数を動かす
+    } else {
+      faceShowFlag && setFaceShowFlag(false);
+    }
+  }, [num]);
+
   return (
     <>
       <h1 style={{ color: "green" }}>こんにちは！</h1>
